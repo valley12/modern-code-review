@@ -33,12 +33,19 @@ int main(){
 			cout << "Which cell to mark? i:[1..3], j:[1..3]: "; 
 			while(true){
 			    cin >> i >> j;
-			    if(i < 1 || i > 3 || j < 1 || j > 3 || game[i - 1][j - 1] != ' '){
-			        cout << "Input Error"<<endl;
-			    } else {
-			        break;
-			    }
-			}
+    			if (cin.fail()){
+    				cout << "Invalid input. Please enter numbers only." << endl;
+    				cin.clear();
+    				cin.ignore(1024, '\n');
+    				cout << "Please try again: ";
+    				continue;
+    			}
+    			if(i < 1 || i > 3 || j < 1 || j > 3 || game[i - 1][j - 1] != ' '){
+    				cout << "Invalid move. Out of bounds or cell is taken. Try again: ";
+    			} else {
+    				break;
+    			}
+    		}
 			if (turn == false)
 			   game[i - 1][j - 1] = player1;
 			else 
